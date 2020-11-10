@@ -31,13 +31,20 @@ $tweaks = @(
 	### Chris Titus Tech Additions
 	"TitusRegistryTweaks",
 	"InstallTitusProgs", #REQUIRED FOR OTHER PROGRAM INSTALLS!
+	"InstallBaseTools",
+	"InstallDevTools",
 	"Install7Zip",
-	"InstallNotepadplusplus",
-	"InstallIrfanview",
+	#"InstallNotepadplusplus",
+	#"InstallIrfanview",
 	"InstallVLC",
 	"InstallAdobe",
-	"InstallBrave",
+	#"InstallBrave",
 	# "ChangeDefaultApps", # Removed due to issues with steam and resetting default apps
+	"InstallTortoiseSvn",
+	"InstalVirtualBox",
+	"InstallAudacity",
+	"InstallPlexServer",
+	"InstallMSIAfterburner",
 
 	### Windows Apps
 	"DebloatAll",
@@ -121,7 +128,7 @@ $tweaks = @(
 	"ShowTrayIcons",                # "HideTrayIcons",
 	"DisableSearchAppInStore",      # "EnableSearchAppInStore",
 	"DisableNewAppPrompt",          # "EnableNewAppPrompt",
-	# "SetControlPanelSmallIcons",  # "SetControlPanelLargeIcons",  # "SetControlPanelCategories",
+	"SetControlPanelSmallIcons",  # "SetControlPanelLargeIcons",  # "SetControlPanelCategories",
 	# "SetVisualFXPerformance",     # "SetVisualFXAppearance",
 	# "AddENKeyboard",              # "RemoveENKeyboard",
 	"EnableNumlock",             	# "DisableNumlock",
@@ -138,14 +145,14 @@ $tweaks = @(
 	# "ShowUserFolderOnDesktop",    # "HideUserFolderFromDesktop",
 	# "HideDesktopFromThisPC",        # "ShowDesktopInThisPC",
 	# "HideDesktopFromExplorer",    # "ShowDesktopInExplorer",
-	# "HideDocumentsFromThisPC",      # "ShowDocumentsInThisPC",
+	"HideDocumentsFromThisPC",      # "ShowDocumentsInThisPC",
 	# "HideDocumentsFromExplorer",  # "ShowDocumentsInExplorer",
-	# "HideDownloadsFromThisPC",      # "ShowDownloadsInThisPC",
+	"HideDownloadsFromThisPC",      # "ShowDownloadsInThisPC",
 	# "HideDownloadsFromExplorer",  # "ShowDownloadsInExplorer",
 	"HideMusicFromThisPC",          # "ShowMusicInThisPC",
 	"HideMusicFromExplorer",      # "ShowMusicInExplorer",
-	# "HidePicturesFromThisPC",       # "ShowPicturesInThisPC",
-	# "HidePicturesFromExplorer",   # "ShowPicturesInExplorer",
+	"HidePicturesFromThisPC",       # "ShowPicturesInThisPC",
+	"HidePicturesFromExplorer",   # "ShowPicturesInExplorer",
 	"HideVideosFromThisPC",         # "ShowVideosInThisPC",
 	"HideVideosFromExplorer",     # "ShowVideosInExplorer",
 	"Hide3DObjectsFromThisPC",      # "Show3DObjectsInThisPC",
@@ -158,7 +165,7 @@ $tweaks = @(
 	"UninstallMsftBloat",           # "InstallMsftBloat",
 	"UninstallThirdPartyBloat",     # "InstallThirdPartyBloat",
 	# "UninstallWindowsStore",      # "InstallWindowsStore",
-	# "DisableXboxFeatures",          # "EnableXboxFeatures",
+	"DisableXboxFeatures",          # "EnableXboxFeatures",
 	"DisableAdobeFlash",            # "EnableAdobeFlash",
 	"InstallMediaPlayer", 		# "UninstallMediaPlayer",
 	"UninstallInternetExplorer",  # "InstallInternetExplorer",
@@ -168,8 +175,8 @@ $tweaks = @(
 	"SetPhotoViewerAssociation",    # "UnsetPhotoViewerAssociation",
 	"AddPhotoViewerOpenWith",       # "RemovePhotoViewerOpenWith",
 	"InstallPDFPrinter"		# "UninstallPDFPrinter",
-	# "UninstallXPSPrinter",          # "InstallXPSPrinter",
-	# "RemoveFaxPrinter",             # "AddFaxPrinter",
+	"UninstallXPSPrinter",          # "InstallXPSPrinter",
+	"RemoveFaxPrinter",             # "AddFaxPrinter",
 
 	### Server Specific Tweaks ###
 	# "HideServerManagerOnLogin",   # "ShowServerManagerOnLogin",
@@ -184,6 +191,7 @@ $tweaks = @(
 	#"UnpinTaskbarIcons",
 
 	### Auxiliary Functions ###
+	"EnableSearchSuggest",
 )
 
 #########
@@ -285,6 +293,34 @@ Function InstallVLC {
 
 Function InstallIrfanview {
 	Show-Choco-Menu -Title "Do you want to install Irfanview?" -ChocoInstall "irfanview"
+}
+
+Function InstallTortoiseSvn {
+	Show-Choco-Menu -Title "Do you want to install Tortoise Svn?" -ChocoInstall "tortoisesvn"
+}
+
+Function InstallVirtualBox {
+	Show-Choco-Menu -Title "Do you want to install VirtualBox?" -ChocoInstall "virtualbox"
+}
+
+Function InstallAudacity {
+	Show-Choco-Menu -Title "Do you want to install Audacity?" -ChocoInstall "audacity"
+}
+
+Function InstallPlexServer {
+	Show-Choco-Menu -Title "Do you want to install Plex Server?" -ChocoInstall "plexmediaserver"
+}
+
+Function InstallMSIAfterburner {
+	Show-Choco-Menu -Title "Do you want to install MSI Afterburner?" -ChocoInstall "msiafterburner"
+}
+
+Function InstallDevTools {
+	Show-Choco-Menu -Title "Do you want to install PowerShell Core, Docker, Insomnia, Starship, Cascadia Code, Git, Windows Terminal, VS Code?" -ChocoInstall "powershell-core docker-desktop insomnia-rest-api-client starship cascadiacodepl git microsoft-windows-terminal vscode"
+}
+
+Function InstallBaseTools {
+	Show-Choco-Menu -Title "Do you want to install VLC, 7zip, Discord, Lightshot, PowerToys, Geek Uninstaller?" -ChocoInstall "vlc 7zip discord lightshot powertoys geekuninstaller"
 }
 
 Function ChangeDefaultApps {
@@ -389,6 +425,11 @@ Function EnableWebSearch {
 	Remove-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -ErrorAction SilentlyContinue
 	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "CortanaConsent" -Type DWord -Value 1
 	Remove-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -ErrorAction SilentlyContinue
+}
+
+Function EnableSearchSuggest {
+	Write-Output "Enabling Search suggestions in Edge..."
+	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Edge" -Name "SearchSuggestEnabled" -Type DWord -Value 1
 }
 
 # Disable Application suggestions and automatic installation
@@ -2254,6 +2295,7 @@ Function InstallLinuxSubsystem {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowAllTrustedApps" -Type DWord -Value 1
 	}
 	Enable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
+	Enable-WindowsOptionalFeature -Online -FeatureName "VirtualMachinePlatform" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
 # Uninstall Linux Subsystem - Applicable to 1607 or newer
@@ -2264,6 +2306,7 @@ Function UninstallLinuxSubsystem {
 		Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowAllTrustedApps" -Type DWord -Value 0
 	}
 	Disable-WindowsOptionalFeature -Online -FeatureName "Microsoft-Windows-Subsystem-Linux" -NoRestart -WarningAction SilentlyContinue | Out-Null
+	Disable-WindowsOptionalFeature -Online -FeatureName "VirtualMachinePlatform" -NoRestart -WarningAction SilentlyContinue | Out-Null
 }
 
 # Install Hyper-V - Not applicable to Home
